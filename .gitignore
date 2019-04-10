@@ -1,6 +1,6 @@
 *
 !.gitignore
-!.dir_colors
+!.dircolors
 !.tmux.conf
 !*.sh
 !*.md
