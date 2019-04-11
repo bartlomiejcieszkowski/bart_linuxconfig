@@ -4,3 +4,4 @@
 !.tmux.conf
 !*.sh
 !*.md
+!install_scripts
