@@ -12,15 +12,34 @@ if [ ! -d ~/.vim/colors ]; then
 fi
 
 if [ ! -f ~/.vim/colors/monokai.vim ]; then
-	"Getting monokai theme"
+	echo "Getting monokai theme"
 	wget -O ~/.vim/colors/monokai.vim https://raw.githubusercontent.com/sickill/vim-monokai/master/colors/monokai.vim
 fi
+
+if [ ! -f ~/.vim/colors/material-monokai.vim ]; then
+	echo "Getting material-monokai theme"
+	wget -O ~/.vim/colors/material-monokai.vim https://raw.githubusercontent.com/skielbasa/vim-material-monokai/master/colors/material-monokai.vim
+fi
+
 touch ~/.vimrc
 if ! grep -F "syntax" ~/.vimrc; then
 	echo "syntax enable" >> ~/.vimrc
 fi
-if ! grep -Fx "colorscheme monokai" ~/.vimrc; then
-	echo "colorscheme monokai" >> ~/.vimrc
+
+#if ! grep -Fx "colorscheme monokai" ~/.vimrc; then
+#	echo "colorscheme monokai" >> ~/.vimrc
+#fi
+
+if ! grep -Fx "set background=dark" ~/.vimrc; then
+	echo "set background=dark" >> ~/.vimrc
+fi
+
+if ! grep -Fx "set termguicolors" ~/.vimrc; then
+	echo "set termguicolors" >> ~/.vimrc
+fi
+
+if ! grep -Fx "colorscheme material-monokai" ~/.vimrc; then
+	echo "colorscheme material-monokai" >> ~/.vimrc
 fi
 
 if [ ! -f ~/.tmux.conf ]; then
