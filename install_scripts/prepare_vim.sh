@@ -23,14 +23,16 @@ cd ${SCRIPT_DIR}
 #apt-vim install -y https://github.com/scrooloose/nerdtree.git
 
 
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+#git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+# version with shallow clone
+git clone --depth 1 https://github.com/bartlomiejcieszkowski/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 echo "set nocompatible" >> ~/.vimrc
 echo "filetype off" >> ~/.vimrc
 echo "set rtp+=~/.vim/bundle/Vundle.vim" >> ~/.vimrc
 echo "call vundle#begin()" >> ~/.vimrc
 echo "\" PLUGINS_BEGIN" >> ~/.vimrc
-
+echo "Plugin 'https://github.com/bartlomiejcieszkowski/Vundle.vim.git'" >> ~/.vimrc
 echo "Plugin 'https://github.com/scrooloose/nerdtree.git'" >> ~/.vimrc
 echo "Plugin 'https://github.com/Valloric/YouCompleteMe.git'" >> ~/.vimrc
 echo "\" PLUGINS_END" >> ~/.vimrc
