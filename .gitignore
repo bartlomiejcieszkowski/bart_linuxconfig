@@ -2,6 +2,7 @@
 !.gitignore
 !.dircolors
 !.tmux.conf
+!.bash_aliases
 !*.sh
 !*.md
 !install_scripts

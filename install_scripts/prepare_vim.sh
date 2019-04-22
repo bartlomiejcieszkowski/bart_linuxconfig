@@ -32,10 +32,17 @@ echo "call vundle#begin()" >> ~/.vimrc
 echo "\" PLUGINS_BEGIN" >> ~/.vimrc
 
 echo "Plugin 'https://github.com/scrooloose/nerdtree.git'" >> ~/.vimrc
+echo "Plugin 'https://github.com/Valloric/YouCompleteMe.git'" >> ~/.vimrc
 echo "\" PLUGINS_END" >> ~/.vimrc
 echo "call vundle#end()" >> ~/.vimrc
 echo "filetype plugin indent on" >> ~/.vimrc
 #echo "filetype plugin on" >> ~/.vimrc
 
 vim +PluginInstall +qall
+
+echo "finishing setup of YouCompleteMe plugin"
+sudo apt-get install -y build-essential cmake python3-dev clang-tools
+
+cd ~/.vim/bundle/YouCompleteMe
+python3 install.py --clangd-completer --clang-completer
 
