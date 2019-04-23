@@ -6,3 +6,4 @@
 !*.sh
 !*.md
 !install_scripts
+!rpi_utils
