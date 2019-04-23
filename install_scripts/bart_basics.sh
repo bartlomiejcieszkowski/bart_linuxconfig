@@ -30,13 +30,13 @@ fi
 #	echo "colorscheme monokai" >> ~/.vimrc
 #fi
 
-if ! grep -Fx "set background=dark" ~/.vimrc; then
-	echo "set background=dark" >> ~/.vimrc
-fi
+#if ! grep -Fx "set background=dark" ~/.vimrc; then
+#	echo "set background=dark" >> ~/.vimrc
+#fi
 
-if ! grep -Fx "set termguicolors" ~/.vimrc; then
-	echo "set termguicolors" >> ~/.vimrc
-fi
+#if ! grep -Fx "set termguicolors" ~/.vimrc; then
+#	echo "set termguicolors" >> ~/.vimrc
+#fi
 
 if ! grep -Fx "colorscheme material-monokai" ~/.vimrc; then
 	echo "colorscheme material-monokai" >> ~/.vimrc
