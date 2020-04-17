@@ -27,18 +27,21 @@ cd ${SCRIPT_DIR}
 # version with shallow clone
 git clone --depth 1 https://github.com/bartlomiejcieszkowski/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-echo "set nocompatible" >> ~/.vimrc
-echo "filetype off" >> ~/.vimrc
-echo "set rtp+=~/.vim/bundle/Vundle.vim" >> ~/.vimrc
-echo "call vundle#begin()" >> ~/.vimrc
-echo "\" PLUGINS_BEGIN" >> ~/.vimrc
-echo "Plugin 'https://github.com/bartlomiejcieszkowski/Vundle.vim.git'" >> ~/.vimrc
-echo "Plugin 'https://github.com/scrooloose/nerdtree.git'" >> ~/.vimrc
-echo "Plugin 'https://github.com/Valloric/YouCompleteMe.git'" >> ~/.vimrc
-echo "\" PLUGINS_END" >> ~/.vimrc
-echo "call vundle#end()" >> ~/.vimrc
-echo "filetype plugin indent on" >> ~/.vimrc
-#echo "filetype plugin on" >> ~/.vimrc
+if ! grep -Fx "call vundle#begin()" ~/.vimrc; then
+	echo "set nocompatible" >> ~/.vimrc
+	echo "filetype off" >> ~/.vimrc
+	echo "set rtp+=~/.vim/bundle/Vundle.vim" >> ~/.vimrc
+	echo "call vundle#begin()" >> ~/.vimrc
+	echo "\" PLUGINS_BEGIN" >> ~/.vimrc
+	echo "Plugin 'https://github.com/bartlomiejcieszkowski/Vundle.vim.git'" >> ~/.vimrc
+	echo "Plugin 'https://github.com/scrooloose/nerdtree.git'" >> ~/.vimrc
+	echo "Plugin 'https://github.com/Valloric/YouCompleteMe.git'" >> ~/.vimrc
+	echo "\" PLUGINS_END" >> ~/.vimrc
+	echo "call vundle#end()" >> ~/.vimrc
+	echo "filetype plugin indent on" >> ~/.vimrc
+else
+	echo "vundle is already added to vimrc? are you reruning script?"
+fi
 
 vim +PluginInstall +qall
 
@@ -81,4 +84,4 @@ fi
 
 cd ~/.vim/bundle/YouCompleteMe
 python3 install.py --clangd-completer --clang-completer
-
+cd -
