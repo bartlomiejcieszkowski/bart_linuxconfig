@@ -13,14 +13,7 @@ if [ $? -ne 0 ]; then
 	sudo apt-get install -y python
 fi
 
-cd ${SCRIPT_DIR}
-
-#pathogen apt-vim
-#./install_apt-vim.sh
-
 #source ~/.bashrc || source ~/.bash_profile
-
-#apt-vim install -y https://github.com/scrooloose/nerdtree.git
 
 
 #git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
