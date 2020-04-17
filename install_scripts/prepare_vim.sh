@@ -43,7 +43,41 @@ echo "filetype plugin indent on" >> ~/.vimrc
 vim +PluginInstall +qall
 
 echo "finishing setup of YouCompleteMe plugin"
-sudo apt-get install -y build-essential cmake python3-dev clang-tools
+MISSING_PACKAGES=0
+MISSING_PACKAGES_LIST=""
+dpkg-query -l build-essential
+if [ $? -ne 0 ]; then
+	MISSING_PACKAGES=1
+	MISSING_PACKAGES_LIST="${MISSING_PACKAGES_LIST} build-essential"
+fi
+
+dpkg-query -l cmake
+if [ $? -ne 0 ]; then
+	type cmake &> /dev/null
+	if [ $? -ne 0 ]; then
+		MISSING_PACKAGES=1
+		MISSING_PACKAGES_LIST="${MISSING_PACKAGES_LIST} cmake"
+	else
+		echo "cmake is instaled, but not from apt "
+	fi
+fi
+
+dpkg-query -l python3-dev
+if [ $? -ne 0 ]; then
+	MISSING_PACKAGES=1
+	MISSING_PACKAGES_LIST="${MISSING_PACKAGES_LIST} python3-dev"
+fi
+
+dpkg-query -l clang-tools
+if [ $? -ne 0 ]; then
+	MISSING_PACKAGES=1
+	MISSING_PACKAGES_LIST="${MISSING_PACKAGES_LIST} clang-tools"
+fi
+
+if [ $MISSING_PACKAGES -ne 0 ]; then
+	echo "missing ${MISSING_PACKAGES_LIST} - trying to install"
+	sudo apt-get install -y ${MISSING_PACKAGES_LIST}
+fi
 
 cd ~/.vim/bundle/YouCompleteMe
 python3 install.py --clangd-completer --clang-completer
