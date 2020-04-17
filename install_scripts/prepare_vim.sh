@@ -85,3 +85,19 @@ fi
 cd ~/.vim/bundle/YouCompleteMe
 python3 install.py --clangd-completer --clang-completer
 cd -
+
+echo "Extra config"
+if ! grep -Fx "\" BART part2" ~/.vimrc; then
+	echo "\" BART part2" >> ~/.vimrc
+	echo "set number" >> ~/.vimrc
+	echo ":nmap <C-n><C-n> :set invnumber<CR>" >> ~/.vimrc
+	echo "autocmd StdinReadPre * let s:std_in=1" >> ~/.vimrc
+	echo "autocmd VimEnter * if argc() == 0 && !exists(\"s:std_in\") | NERDTree | endif" >> ~/.vimrc
+	echo "autocmd VimEnter * NERDTree" >> ~/.vimrc
+	echo "autocmd VimEnter * wincmd p" >> ~/.vimrc
+	echo "autocmd BufEnter * if (winnr(\"$\") == 1 && exists(\"b:NERDTree\") && b:NERDTree.isTabTree()) | q | endif" >> ~/.vimrc
+	echo "set pastetoggle=<F2>"
+	echo "\" BART part2 end"
+fi
+
+echo "Done"
