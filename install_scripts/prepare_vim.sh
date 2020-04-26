@@ -1,7 +1,7 @@
 #!/bin/bash
 
 WORKING_DIR=`pwd`
-SCRIPT_DIR=`basename "$0"`
+SCRIPT_DIR=`dirname "$0"`
 
 type curl &> /dev/null
 if [ $? -ne 0 ]; then
