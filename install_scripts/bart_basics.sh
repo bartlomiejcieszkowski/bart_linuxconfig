@@ -9,7 +9,7 @@ else
 	sudo apt-get install vim || exit 1
 fi
 
-echo "${STEP_NAME}Customizing vim"
+echo "${STEP_NAME} customizing vim"
 if [ ! -d ~/.vim/colors ]; then
 	mkdir -p ~/.vim/colors
 fi
@@ -25,7 +25,7 @@ if [ ! -f ~/.vim/colors/material-monokai.vim ]; then
 fi
 
 touch ~/.vimrc
-if ! grep -F "syntax" ~/.vimrc; then
+if ! grep -F "syntax" ~/.vimrc >/dev/null 2>&1; then
 	echo "${STEP_NAME}Enabling syntax highlighting"
 	echo "syntax enable" >> ~/.vimrc
 fi
@@ -42,7 +42,7 @@ fi
 #	echo "set termguicolors" >> ~/.vimrc
 #fi
 
-if ! grep -Fx "colorscheme material-monokai" ~/.vimrc; then
+if ! grep -Fx "colorscheme material-monokai" ~/.vimrc >/dev/null 2>&1; then
 	echo "${STEP_NAME}Setting colorscheme to material-monokai"
 	echo "colorscheme material-monokai" >> ~/.vimrc
 fi
@@ -69,3 +69,25 @@ if [ ! -f ~/.tmux.conf ]; then
 else
 	echo "${STEP_NAME}tmux.conf already exists, skipping"
 fi
+
+STEP_NAME="[fzf]"
+if command -v fzf >/dev/null 2>&1 ; then
+	echo "${STEP_NAME}[OK] fzf is installed"
+else
+	echo "${STEP_NAME}[FAIL] tmux is not installed"
+	sudo apt-get install tmux || exit 1
+fi
+
+if ! grep "source.*fzf" ~/.bashrc >/dev/null 2>&1; then
+	echo "${STEP_NAME} enabling fzf bash completion, use  ** <TAB>"
+	if [ -f /usr/share/doc/fzf/examples/completion.bash ]; then
+		echo "source /usr/share/doc/fzf/examples/completion.bash" >> ~/.bashrc
+	else
+		echo "${STEP_NAME} fail - completion.bash not found - you have to add it manually"
+	fi
+
+else
+	echo "${STEP_NAME} fzf bash completion already enabled"
+fi
+
+echo "Done"
