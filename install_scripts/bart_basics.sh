@@ -75,7 +75,15 @@ if command -v fzf >/dev/null 2>&1 ; then
 	echo "${STEP_NAME}[OK] fzf is installed"
 else
 	echo "${STEP_NAME}[FAIL] tmux is not installed"
-	sudo apt-get install tmux || exit 1
+	sudo apt-get install fzf || exit 1
+fi
+
+STEP_NAME="[ag]"
+if command -v ag >/dev/null 2>&1 ; then
+	echo "${STEP_NAME}[OK] ag is installed"
+else
+	echo "${STEP_NAME}[FAIL] ag is not installed"
+	sudo apt-get install ag || exit 1
 fi
 
 if ! grep "source.*fzf" ~/.bashrc >/dev/null 2>&1; then
